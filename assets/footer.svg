@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="120" viewBox="0 0 1200 120" role="img" aria-label="It's not personal. It's business.">
+  <style>
+    .q { font: italic 400 26px Georgia, 'Times New Roman', serif; fill: #e8e2d6; letter-spacing: 1px; opacity: 0; animation: fade 2s ease-out 0.4s forwards; }
+    .rule { stroke-dasharray: 300; stroke-dashoffset: 300; animation: draw 1.2s ease-out 1.6s forwards; }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+  </style>
+  <rect width="1200" height="120" fill="#0b0b0b"/>
+  <text x="600" y="62" text-anchor="middle" class="q">"It's not personal. It's business."</text>
+  <line x1="450" y1="88" x2="750" y2="88" stroke="#a31515" stroke-width="1.5" class="rule"/>
+</svg>

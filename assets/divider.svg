@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="24" viewBox="0 0 1200 24" role="img" aria-label="divider">
+  <style>
+    .line { transform-origin: 600px 12px; transform: scaleX(0); animation: open 1.1s ease-out 0.2s forwards; }
+    .dot { opacity: 0; animation: show 0.4s ease-out 1.2s forwards; }
+    @keyframes open { to { transform: scaleX(1); } }
+    @keyframes show { to { opacity: 1; } }
+  </style>
+  <rect width="1200" height="24" fill="#0b0b0b"/>
+  <line x1="250" y1="12" x2="950" y2="12" stroke="#a31515" stroke-width="1.5" class="line"/>
+  <rect x="596" y="8" width="8" height="8" fill="#a31515" transform="rotate(45 600 12)" class="dot"/>
+</svg>

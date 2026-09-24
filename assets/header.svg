@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-label="Noor Zakaria. Security, reverse engineering, Python backend.">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+      <stop offset="55%" stop-color="#0b0b0b" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.85"/>
+    </radialGradient>
+    <clipPath id="reveal">
+      <rect class="type" x="0" y="0" width="1200" height="260"/>
+    </clipPath>
+  </defs>
+  <style>
+    .type { transform-origin: 130px 0; transform: scaleX(0); animation: type 2.6s steps(12, end) 0.3s forwards; }
+    .name { font: 700 84px Georgia, 'Times New Roman', serif; fill: #e8e2d6; letter-spacing: 16px; }
+    .file { font: 400 13px 'Courier New', monospace; fill: #8a8378; letter-spacing: 3px; }
+    .sub  { font: italic 400 22px Georgia, 'Times New Roman', serif; fill: #8a8378; letter-spacing: 2px; opacity: 0; animation: fade 1.2s ease-out 3.7s forwards; }
+    .rule { stroke-dasharray: 940; stroke-dashoffset: 940; animation: draw 0.9s ease-out 3.0s forwards; }
+    .grain { opacity: 0.07; animation: flicker 0.35s steps(2, end) infinite; }
+    .stamp { opacity: 0; animation: stamp 0.25s ease-out 4.7s forwards; }
+    @keyframes type { to { transform: scaleX(1); } }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes flicker { 50% { opacity: 0.11; } }
+    @keyframes stamp { from { opacity: 0; transform: scale(1.4); } to { opacity: 0.9; transform: scale(1); } }
+  </style>
+  <rect width="1200" height="260" fill="#0b0b0b"/>
+  <rect class="grain" width="1200" height="260" filter="url(#grain)"/>
+  <rect width="1200" height="260" fill="url(#vignette)"/>
+  <text x="60" y="48" class="file">CASE FILE 0413 / NOORGX</text>
+  <g clip-path="url(#reveal)">
+    <text x="600" y="145" text-anchor="middle" class="name">NOOR ZAKARIA</text>
+  </g>
+  <line x1="130" y1="172" x2="1070" y2="172" stroke="#a31515" stroke-width="2" class="rule"/>
+  <text x="600" y="212" text-anchor="middle" class="sub">Security  ·  Reverse engineering  ·  Python backend</text>
+  <g class="stamp" style="transform-origin: 1080px 52px;">
+    <rect x="1010" y="34" width="140" height="36" fill="none" stroke="#a31515" stroke-width="2" transform="rotate(-6 1080 52)"/>
+    <text x="1080" y="58" text-anchor="middle" class="file" style="fill:#a31515;font-weight:700" transform="rotate(-6 1080 52)">CLASSIFIED</text>
+  </g>
+</svg>
