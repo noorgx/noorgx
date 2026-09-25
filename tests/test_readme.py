@@ -32,7 +32,7 @@ def test_readme_lists_every_tech_item_once():
 def test_readme_images_point_at_real_files():
     for path in re.findall(r'src="(assets/[^"]+)"', README):
         assert (ROOT / path).exists(), path
-    for name in ("snake", "record", "languages", "honours", "word"):
+    for name in ("snake", "moves", "record", "languages", "honours", "word"):
         assert f"raw.githubusercontent.com/noorgx/noorgx/output/{name}.svg" in README, name
     assert "streak-stats.demolab.com" in README and "komarev.com/ghpvc" in README
 

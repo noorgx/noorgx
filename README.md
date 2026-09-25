@@ -98,6 +98,8 @@ building systems that are reliable, scalable and secure, and I deliver clean, we
 
 <p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/snake.svg" alt="A snake eating the contribution graph" width="100%" /></p>
 
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/moves.svg" alt="Last Moves" width="100%" /></p>
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/noorgx/noorgx/output/record.svg" alt="The Record" width="49%" />
 <img src="https://streak-stats.demolab.com/?user=noorgx&background=0b0b0b&ring=a31515&fire=a31515&currStreakNum=e8e2d6&sideNums=e8e2d6&currStreakLabel=a31515&sideLabels=e8e2d6&dates=8a8378&stroke=2a2a2a&hide_border=true" alt="Streak" width="49%" />

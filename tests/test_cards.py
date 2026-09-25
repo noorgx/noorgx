@@ -139,11 +139,11 @@ def opener_returning(payload):
     return opener
 
 
-def test_main_writes_four_cards(tmp_path, monkeypatch):
+def test_main_writes_every_card(tmp_path, monkeypatch):
     monkeypatch.setenv("GITHUB_TOKEN", "tok")
     opener = opener_returning({"data": {"user": USER}})
     assert cards.main(["--user", "noorgx", "--out", str(tmp_path)], opener=opener, today=date(2026, 9, 24)) == 0
-    assert sorted(p.name for p in tmp_path.iterdir()) == ["honours.svg", "languages.svg", "record.svg", "word.svg"]
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["honours.svg", "languages.svg", "moves.svg", "record.svg", "word.svg"]
     assert opener.request.get_header("Authorization") == "Bearer tok"
 
 
@@ -183,7 +183,7 @@ def test_main_uses_partial_data_when_one_field_is_refused(tmp_path, monkeypatch)
     user["repositoriesContributedTo"] = None
     payload = {"data": {"user": user}, "errors": [{"path": ["user", "repositoriesContributedTo"], "message": "Resource not accessible by integration"}]}
     assert cards.main(["--user", "noorgx", "--out", str(tmp_path)], opener=opener_returning(payload), today=date(2026, 9, 24)) == 0
-    assert len(list(tmp_path.iterdir())) == 4
+    assert len(list(tmp_path.iterdir())) == 5
 
 
 def test_record_says_past_year_and_matches_streak_card_height():
@@ -191,3 +191,84 @@ def test_record_says_past_year_and_matches_streak_card_height():
     assert "Commits, past year" in text_of(svg)
     assert "this year" not in text_of(svg)
     assert parse(svg).get("height") == "195"
+
+
+def event(type_, repo, when, **payload):
+    return {"type": type_, "repo": {"name": repo}, "created_at": when, "payload": payload}
+
+
+def test_moves_describe_each_kind_of_event():
+    events = [
+        event("PushEvent", "noorgx/noorgx", "2026-09-24T17:36:16Z", ref="refs/heads/main"),
+        event("PullRequestEvent", "a/b", "2026-09-23T10:00:00Z", action="opened", pull_request={}),
+        event("PullRequestEvent", "a/c", "2026-09-22T10:00:00Z", action="closed", pull_request={"merged": True}),
+        event("CreateEvent", "noorgx/tool", "2026-09-21T10:00:00Z", ref_type="repository"),
+        event("ReleaseEvent", "noorgx/tool", "2026-09-20T10:00:00Z", action="published", release={"tag_name": "v1.0"}),
+        event("IssuesEvent", "x/y", "2026-09-19T10:00:00Z", action="opened"),
+    ]
+    assert cards.summarize_events(events) == [
+        ("24 SEP", "Pushed to", "noorgx/noorgx"),
+        ("23 SEP", "Opened a pull request in", "a/b"),
+        ("22 SEP", "Merged a pull request in", "a/c"),
+        ("21 SEP", "Created repository", "noorgx/tool"),
+        ("20 SEP", "Released v1.0 of", "noorgx/tool"),
+        ("19 SEP", "Opened an issue in", "x/y"),
+    ]
+
+
+def test_moves_merge_pushes_to_the_same_repo_on_the_same_day():
+    events = [event("PushEvent", "r/r", "2026-09-24T18:00:00Z"), event("PushEvent", "r/r", "2026-09-24T09:00:00Z"),
+              event("PushEvent", "r/r", "2026-09-23T09:00:00Z")]
+    assert [m[0] for m in cards.summarize_events(events)] == ["24 SEP", "23 SEP"]
+
+
+def test_moves_put_real_work_first_and_use_stars_only_to_fill():
+    events = [event("WatchEvent", f"s/{i}", f"2026-09-2{i}T10:00:00Z", action="started") for i in range(1, 9)]
+    events.insert(3, event("ForkEvent", "f/f", "2026-08-31T19:34:18Z", action="forked"))
+    moves = cards.summarize_events(events)
+    assert len(moves) == 6
+    assert moves[-1] == ("31 AUG", "Forked", "f/f")
+    assert [text for _, text, _ in moves].count("Starred") == 5
+
+
+def test_moves_skip_events_they_do_not_understand():
+    events = [event("MemberEvent", "a/b", "2026-09-24T10:00:00Z"),
+              event("PullRequestEvent", "a/b", "2026-09-24T10:00:00Z", action="labeled", pull_request={})]
+    assert cards.summarize_events(events) == []
+
+
+def test_moves_card_lists_lines_and_escapes_repo_names():
+    svg = cards.render_moves([("24 SEP", "Pushed to", "a/<b>&c")])
+    body = text_of(svg)
+    assert "LAST MOVES" in body and "24 SEP" in body and "a/<b>&c" in body
+
+
+def test_moves_card_when_quiet_or_fetch_failed():
+    assert "Quiet lately." in text_of(cards.render_moves([]))
+    assert cards.summarize_events(None) == []
+
+
+def test_fetch_events_returns_none_on_network_error():
+    def broken(request, timeout=None):
+        raise OSError("down")
+    assert cards.fetch_events("noorgx", "tok", broken) is None
+
+
+def routed_opener(graphql_payload, events_payload):
+    def opener(request, timeout=None):
+        payload = graphql_payload if "graphql" in request.full_url else events_payload
+        return FakeResponse(json.dumps(payload).encode())
+    return opener
+
+
+def test_main_writes_the_moves_card(tmp_path, monkeypatch):
+    monkeypatch.setenv("GITHUB_TOKEN", "tok")
+    opener = routed_opener({"data": {"user": USER}}, [event("ForkEvent", "f/f", "2026-08-31T19:34:18Z")])
+    cards.main(["--user", "noorgx", "--out", str(tmp_path)], opener=opener, today=date(2026, 9, 24))
+    assert "f/f" in text_of((tmp_path / "moves.svg").read_text(encoding="utf-8"))
+
+
+def test_moves_are_listed_newest_first_after_choosing_them():
+    events = [event("WatchEvent", "s/new", "2026-09-24T10:00:00Z"),
+              event("ForkEvent", "f/old", "2026-08-31T10:00:00Z")]
+    assert [repo for _, _, repo in cards.summarize_events(events)] == ["s/new", "f/old"]

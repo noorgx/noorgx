@@ -88,6 +88,8 @@ STYLE = f"""
   @keyframes in {{ to {{ opacity: 1; }} }}
   @keyframes grow {{ to {{ transform: scaleX(1); }} }}
   @keyframes draw {{ to {{ stroke-dashoffset: 0; }} }}
+  .cur {{ animation: blink 1s steps(2, start) infinite; }}
+  @keyframes blink {{ to {{ visibility: hidden; }} }}
 """
 
 
@@ -180,6 +182,87 @@ def render_word(day: date) -> str:
     return frame(830, 160, "The Word", body)
 
 
+EVENTS_URL = "https://api.github.com/users/{login}/events/public?per_page=100"
+MONTHS = "JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC".split()
+
+
+def fetch_events(login: str, token: str, opener=urllib.request.urlopen) -> list[dict] | None:
+    """Latest public events, or None if GitHub can't be reached. The card then says it's quiet."""
+    request = urllib.request.Request(
+        EVENTS_URL.format(login=login),
+        headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+                 "User-Agent": "noorgx-profile-cards"},
+    )
+    try:
+        with opener(request, timeout=60) as response:
+            events = json.load(response)
+    except (OSError, ValueError) as e:
+        print(f"Could not read public events: {e}", file=sys.stderr)
+        return None
+    return events if isinstance(events, list) else None
+
+
+def describe(event: dict) -> str | None:
+    kind, payload = event.get("type"), event.get("payload") or {}
+    action = payload.get("action")
+    if kind == "PushEvent":
+        return "Pushed to"
+    if kind == "PullRequestEvent":
+        if action == "opened":
+            return "Opened a pull request in"
+        if action == "closed" and (payload.get("pull_request") or {}).get("merged"):
+            return "Merged a pull request in"
+    if kind == "CreateEvent" and payload.get("ref_type") == "repository":
+        return "Created repository"
+    if kind == "ReleaseEvent" and action == "published":
+        return f"Released {(payload.get('release') or {}).get('tag_name') or 'a version'} of"
+    if kind == "IssuesEvent" and action in ("opened", "closed"):
+        return f"{action.capitalize()} an issue in"
+    if kind == "PublicEvent":
+        return "Made public"
+    if kind == "ForkEvent":
+        return "Forked"
+    if kind == "WatchEvent":
+        return "Starred"
+    return None
+
+
+def summarize_events(events: list[dict] | None, limit: int = 6) -> list[tuple[str, str, str]]:
+    """(date, action, repo) lines, newest first. Real work is picked first; stars only fill empty slots."""
+    work, stars, pushes = [], [], set()
+    for event in events or []:
+        text = describe(event)
+        if not text:
+            continue
+        when = datetime.fromisoformat(event["created_at"].replace("Z", "+00:00"))
+        repo = (event.get("repo") or {}).get("name", "")
+        if text == "Pushed to":
+            if (repo, when.date()) in pushes:
+                continue
+            pushes.add((repo, when.date()))
+        (stars if text == "Starred" else work).append((when, text, repo))
+    chosen = sorted((work + stars)[:limit], key=lambda line: line[0], reverse=True)
+    return [(f"{when.day:02d} {MONTHS[when.month - 1]}", text, repo) for when, text, repo in chosen]
+
+
+def render_moves(moves: list[tuple[str, str, str]]) -> str:
+    if not moves:
+        return frame(830, 130, "Last Moves", '<text x="25" y="90" class="l">Quiet lately.</text>')
+    body = ""
+    for i, (day, text, repo) in enumerate(moves):
+        y = 82 + i * 26
+        body += (
+            f'<g class="in" {delay(i, 0.3, 0.35)}>'
+            f'<text x="25" y="{y}" class="n" style="fill:{ASH}">{esc(day)}</text>'
+            f'<text x="110" y="{y}" class="l">{esc(text)} <tspan style="fill:{BLOOD}">{esc(repo)}</tspan></text>'
+            f"</g>"
+        )
+    y = 82 + len(moves) * 26
+    body += (f'<g class="in" {delay(len(moves), 0.3, 0.35)}>'
+             f'<rect x="110" y="{y - 13}" width="9" height="15" fill="{BLOOD}" class="cur"/></g>')
+    return frame(830, y + 22, "Last Moves", body)
+
+
 QUERY = """
 query($login: String!) {
   user(login: $login) {
@@ -257,7 +340,9 @@ def main(argv: list[str] | None = None, opener=urllib.request.urlopen, today: da
         sys.exit("GITHUB_TOKEN is not set.")
     today = today or date.today()
     stats = summarize(fetch(args.user, token, opener), today)
+    moves = summarize_events(fetch_events(args.user, token, opener))
     cards = {
+        "moves.svg": render_moves(moves),
         "record.svg": render_record(stats),
         "languages.svg": render_languages(stats["languages"]),
         "honours.svg": render_honours(stats),
