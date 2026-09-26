@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="240" viewBox="0 0 830 240" role="img" aria-label="Honours"><style>
+  .t { font: 700 15px Georgia, 'Times New Roman', serif; fill: #a31515; letter-spacing: 4px; }
+  .l { font: 400 15px Georgia, 'Times New Roman', serif; fill: #e8e2d6; }
+  .n { font: 700 15px 'Courier New', monospace; fill: #e8e2d6; }
+  .s { font: 400 11px 'Courier New', monospace; fill: #8a8378; letter-spacing: 2px; }
+  .big { font: 700 20px Georgia, 'Times New Roman', serif; fill: #e8e2d6; }
+  .don { fill: #a31515; }
+  .q { font: italic 400 19px Georgia, 'Times New Roman', serif; fill: #e8e2d6; }
+  .in { opacity: 0; animation: in 0.6s ease-out forwards; }
+  .bar { transform-box: fill-box; transform-origin: left; transform: scaleX(0); animation: grow 1s ease-out forwards; }
+  .rule { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 1.2s ease-out forwards; }
+  @keyframes in { to { opacity: 1; } }
+  @keyframes grow { to { transform: scaleX(1); } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .cur { animation: blink 1s steps(2, start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+</style><rect x="0.5" y="0.5" width="829" height="239" rx="3" fill="#0b0b0b" stroke="#2a2a2a"/><text x="25" y="38" class="t">HONOURS</text><line x1="25" y1="50" x2="805" y2="50" stroke="#a31515" stroke-width="1" class="rule"/><g class="in" style="animation-delay:0.30s"><rect x="25" y="70" width="250" height="64" fill="#161616" stroke="#2a2a2a"/><rect x="25" y="70" width="3" height="64" fill="#a31515"/><text x="41" y="90" class="s">COMMITS</text><text x="41" y="117" class="big">Underboss</text><text x="261" y="117" text-anchor="end" class="n">2,166</text></g><g class="in" style="animation-delay:0.50s"><rect x="290" y="70" width="250" height="64" fill="#161616" stroke="#2a2a2a"/><rect x="290" y="70" width="3" height="64" fill="#a31515"/><text x="306" y="90" class="s">PULL REQUESTS</text><text x="306" y="117" class="big">Associate</text><text x="526" y="117" text-anchor="end" class="n">2</text></g><g class="in" style="animation-delay:0.70s"><rect x="555" y="70" width="250" height="64" fill="#161616" stroke="#2a2a2a"/><rect x="555" y="70" width="3" height="64" fill="#a31515"/><text x="571" y="90" class="s">STARS</text><text x="571" y="117" class="big">Underboss</text><text x="791" y="117" text-anchor="end" class="n">142</text></g><g class="in" style="animation-delay:0.90s"><rect x="25" y="148" width="250" height="64" fill="#161616" stroke="#2a2a2a"/><rect x="25" y="148" width="3" height="64" fill="#a31515"/><text x="41" y="168" class="s">FOLLOWERS</text><text x="41" y="195" class="big">Boss</text><text x="261" y="195" text-anchor="end" class="n">537</text></g><g class="in" style="animation-delay:1.10s"><rect x="290" y="148" width="250" height="64" fill="#161616" stroke="#2a2a2a"/><rect x="290" y="148" width="3" height="64" fill="#a31515"/><text x="306" y="168" class="s">REPOSITORIES</text><text x="306" y="195" class="big">Soldier</text><text x="526" y="195" text-anchor="end" class="n">12</text></g><g class="in" style="animation-delay:1.30s"><rect x="555" y="148" width="250" height="64" fill="#161616" stroke="#2a2a2a"/><rect x="555" y="148" width="3" height="64" fill="#a31515"/><text x="571" y="168" class="s">YEARS ON GITHUB</text><text x="571" y="195" class="big">Boss</text><text x="791" y="195" text-anchor="end" class="n">6</text></g></svg>

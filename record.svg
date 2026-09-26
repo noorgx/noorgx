@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" role="img" aria-label="The Record"><style>
+  .t { font: 700 15px Georgia, 'Times New Roman', serif; fill: #a31515; letter-spacing: 4px; }
+  .l { font: 400 15px Georgia, 'Times New Roman', serif; fill: #e8e2d6; }
+  .n { font: 700 15px 'Courier New', monospace; fill: #e8e2d6; }
+  .s { font: 400 11px 'Courier New', monospace; fill: #8a8378; letter-spacing: 2px; }
+  .big { font: 700 20px Georgia, 'Times New Roman', serif; fill: #e8e2d6; }
+  .don { fill: #a31515; }
+  .q { font: italic 400 19px Georgia, 'Times New Roman', serif; fill: #e8e2d6; }
+  .in { opacity: 0; animation: in 0.6s ease-out forwards; }
+  .bar { transform-box: fill-box; transform-origin: left; transform: scaleX(0); animation: grow 1s ease-out forwards; }
+  .rule { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 1.2s ease-out forwards; }
+  @keyframes in { to { opacity: 1; } }
+  @keyframes grow { to { transform: scaleX(1); } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .cur { animation: blink 1s steps(2, start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+</style><rect x="0.5" y="0.5" width="494" height="194" rx="3" fill="#0b0b0b" stroke="#2a2a2a"/><text x="25" y="38" class="t">THE RECORD</text><line x1="25" y1="50" x2="470" y2="50" stroke="#a31515" stroke-width="1" class="rule"/><g class="in" style="animation-delay:0.30s"><text x="25" y="78" class="l">Commits, past year</text><text x="470" y="78" text-anchor="end" class="n">2,166</text></g><g class="in" style="animation-delay:0.45s"><text x="25" y="102" class="l">Pull requests</text><text x="470" y="102" text-anchor="end" class="n">2</text></g><g class="in" style="animation-delay:0.60s"><text x="25" y="126" class="l">Issues</text><text x="470" y="126" text-anchor="end" class="n">0</text></g><g class="in" style="animation-delay:0.75s"><text x="25" y="150" class="l">Stars earned</text><text x="470" y="150" text-anchor="end" class="n">142</text></g><g class="in" style="animation-delay:0.90s"><text x="25" y="174" class="l">Repos contributed to</text><text x="470" y="174" text-anchor="end" class="n">3</text></g></svg>
