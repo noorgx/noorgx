@@ -96,19 +96,19 @@ building systems that are reliable, scalable and secure, and I deliver clean, we
 
 <h3 align="center">THE HIT LIST</h3>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/snake.svg?v=9" alt="A snake eating the contribution graph" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/snake.svg?v=10" alt="A snake eating the contribution graph" width="100%" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/moves.svg?v=9" alt="Last Moves" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/moves.svg?v=10" alt="Last Moves" width="100%" /></p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/noorgx/noorgx/output/record.svg?v=9" alt="The Record" width="49%" />
+<img src="https://raw.githubusercontent.com/noorgx/noorgx/output/record.svg?v=10" alt="The Record" width="49%" />
 <img src="https://streak-stats.demolab.com/?user=noorgx&background=0b0b0b&ring=a31515&fire=a31515&currStreakNum=e8e2d6&sideNums=e8e2d6&currStreakLabel=a31515&sideLabels=e8e2d6&dates=8a8378&stroke=2a2a2a&hide_border=true" alt="Streak" width="49%" />
 </p>
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/languages.svg?v=9" alt="Weapons of Choice" width="49%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/languages.svg?v=10" alt="Weapons of Choice" width="49%" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/honours.svg?v=9" alt="Honours" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/honours.svg?v=10" alt="Honours" width="100%" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/word.svg?v=9" alt="Quote of the day" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/word.svg?v=10" alt="Quote of the day" width="100%" /></p>
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%" /></p>
 
