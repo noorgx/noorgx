@@ -119,7 +119,7 @@ building systems that are reliable, scalable and secure, and I deliver clean, we
 <a href="https://medium.com/@noorossamazakaria"><img alt="Medium" src="https://img.shields.io/badge/Medium-7a0f0f?style=flat-square&logo=medium&logoColor=e8e2d6" /></a>
 <a href="mailto:noorossamazakaria@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-7a0f0f?style=flat-square&logo=gmail&logoColor=e8e2d6" /></a>
 <br/><br/>
-<img alt="Visitors" src="https://komarev.com/ghpvc/?username=noorgx&color=7a0f0f&style=flat-square&label=VISITORS" />
+<img alt="Visitors" src="https://api.visitorbadge.io/api/visitors?path=noorgx&label=VISITORS&labelColor=%23161616&countColor=%237a0f0f&style=flat-square" />
 </p>
 
 <p align="center"><img src="assets/footer.svg" alt="It's not personal. It's business." width="100%" /></p>

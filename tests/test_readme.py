@@ -34,9 +34,16 @@ def test_readme_images_point_at_real_files():
         assert (ROOT / path).exists(), path
     for name in ("snake", "moves", "record", "languages", "honours", "word"):
         assert f"raw.githubusercontent.com/noorgx/noorgx/output/{name}.svg" in README, name
-    assert "streak-stats.demolab.com" in README and "komarev.com/ghpvc" in README
+    assert "streak-stats.demolab.com" in README
 
 
 def test_no_heading_repeats_the_card_title_under_it():
     for title in ("THE RECORD", "HONOURS", "THE WORD"):
         assert f">{title}</h3>" not in README, title
+
+
+def test_visitor_counter_uses_a_service_github_can_proxy():
+    # komarev.com failed 6-7 of 10 times through GitHub's image proxy; visitorbadge.io passed 10/10.
+    assert "komarev.com" not in README
+    assert ('src="https://api.visitorbadge.io/api/visitors?path=noorgx&label=VISITORS'
+            '&labelColor=%23161616&countColor=%237a0f0f&style=flat-square"') in README
