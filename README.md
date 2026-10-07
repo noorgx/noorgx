@@ -96,19 +96,19 @@ building systems that are reliable, scalable and secure, and I deliver clean, we
 
 <h3 align="center">THE HIT LIST</h3>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/snake.svg?v=44" alt="A snake eating the contribution graph" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/snake.svg?v=45" alt="A snake eating the contribution graph" width="100%" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/moves.svg?v=44" alt="Last Moves" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/moves.svg?v=45" alt="Last Moves" width="100%" /></p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/noorgx/noorgx/output/record.svg?v=44" alt="The Record" width="49%" />
+<img src="https://raw.githubusercontent.com/noorgx/noorgx/output/record.svg?v=45" alt="The Record" width="49%" />
 <img src="https://streak-stats.demolab.com/?user=noorgx&background=0b0b0b&ring=a31515&fire=a31515&currStreakNum=e8e2d6&sideNums=e8e2d6&currStreakLabel=a31515&sideLabels=e8e2d6&dates=8a8378&stroke=2a2a2a&hide_border=true" alt="Streak" width="49%" />
 </p>
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/languages.svg?v=44" alt="Weapons of Choice" width="49%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/languages.svg?v=45" alt="Weapons of Choice" width="49%" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/honours.svg?v=44" alt="Honours" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/honours.svg?v=45" alt="Honours" width="100%" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/word.svg?v=44" alt="Quote of the day" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noorgx/noorgx/output/word.svg?v=45" alt="Quote of the day" width="100%" /></p>
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%" /></p>
 
